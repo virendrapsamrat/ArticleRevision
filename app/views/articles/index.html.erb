@@ -1,0 +1,37 @@
+<h1> This is index pages </h1>
+<h2> Article search </h2>
+<%= form_tag articles_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>Contact_Number</th>
+    <th>address</th>
+    <th>details</th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+    <td><%= article.name %> </td>
+    <td><%= article.contact_number %></td>
+    <td><%= article.address %> </td>
+    <td><%= article.details %></td>
+    <td><%= link_to "show", article_path(article) %></td>
+     <td>
+      <%if(current_user.id == article.user_id) %>
+       <%= link_to 'Edit', edit_article_path(article) %>
+       <% end %>
+      </td>
+     <td> <%if(current_user.id == article.user_id) %>
+     <%= link_to 'delete', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure want to delete?' }%>
+            <% end %>
+    </tr>
+   <% end %>
+</table> 

@@ -1,0 +1,34 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @article.name %>
+</p>
+
+<p>
+<strong>contact_number </strong>
+<%= @article.contact_number %>
+</p>
+
+<p>
+<strong>address</strong>
+<%= @article.address %>
+</p>
+
+<p>
+<strong>Details </strong>
+<%= @article.details %>
+</p>
+
+<p>
+ <%= image_tag(@article.image.url, size: "100x100")%>
+ </p>
+
+ <h1> Comments details </h1>
+
+
+<%= render 'comments/comment', comments: @comments ,article: @article%>
+
+
+
+
+ <%= render 'comments/form', comment: @comment %>
